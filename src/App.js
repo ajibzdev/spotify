@@ -51,7 +51,13 @@ const App = () => {
             shortDescription="Spotify Free"
             heading="Listening is everything"
             about="Millions of songs and podcasts. No credit card needed."
-            buttons="space for button"
+            buttons={
+              <Button
+                textContent="Get spotify free"
+                background="var(--color-green)"
+                color="var(--color-section-blue)"
+              />
+            }
             background="var(--color-section-blue) url('https://content-tooling.spotifycdn.com/images/b236bf87-bfd5-4bcb-b51a-77881073039c_lie_circles.svg')"
             color="var(--color-green)"
           />
