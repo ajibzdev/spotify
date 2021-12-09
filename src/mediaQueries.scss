@@ -1,0 +1,65 @@
+/////////////////////////////////////////////
+// MIXINS
+/////////////////////////////////////////////
+
+@mixin fonts() {
+  $font-link: import
+    url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: $default-font-size;
+  line-height: 1.7;
+  color: #777;
+}
+
+@mixin centerBlockElement() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 
+
+0-600px:phone;
+600px-900px:Tablet potrait;
+900px - 1200px : Tablet landscape;
+1200px -1800px : Desktop view;
+1800px + : big screens like tv
+
+1em =16px
+
+16px = default root font size
+
+ORDER : base + typography > layout + grid > page layout > components
+
+*/
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media (max-width: 37.5em) {
+      //600px
+      @content;
+    }
+  }
+
+  @if ($breakpoint == tab-port) {
+    @media (max-width: 56.25em) {
+      //900px
+      @content;
+    }
+  }
+
+  @if ($breakpoint == tab-land) {
+    @media (max-width: 75em) {
+      //1200px
+      @content;
+    }
+  }
+
+  @if ($breakpoint == big-screen) {
+    @media (min-width: 112.5em) {
+      //1800px
+      @content;
+    }
+  }
+}

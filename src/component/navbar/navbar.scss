@@ -1,0 +1,131 @@
+@import "../../mediaQueries.scss";
+
+.nav {
+  height: 8rem;
+  width: 100vw;
+  background: var(--color-black);
+  padding: 2rem 7rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  color: var(--color-white);
+
+  @include respond(tab-land) {
+    padding: 1.5rem 6rem;
+  }
+
+  @include respond(tab-port) {
+    padding: 1.5rem 3rem;
+  }
+
+  &__logo {
+    width: 5rem;
+    height: 1rem;
+    opacity: 0;
+    transform: scale(0.5);
+
+    @include respond(tab-port) {
+      width: 10rem;
+    }
+  }
+
+  &__right {
+    // min-width: 13vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+
+    @include respond(tab-port) {
+      min-width: 8vw;
+    }
+  }
+
+  &__item {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 1.5rem;
+    cursor: pointer;
+
+    &:nth-child(6),
+    &:nth-child(5) {
+      width: 6vw;
+    }
+
+    &:hover {
+      color: var(--color-green);
+    }
+
+    @include respond(tab-land) {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  &__response {
+    height: 1.4rem;
+    width: 1.8px;
+    background: var(--color-white);
+    position: relative;
+    cursor: pointer;
+    z-index: 100;
+
+    &::before,
+    &::after {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      background: var(--color-white);
+      transition: all 0.2s;
+    }
+
+    &::before {
+      top: -7px;
+    }
+
+    &::after {
+      top: 7px;
+    }
+
+    @include respond(tab-land) {
+      opacity: 1;
+      visibility: visible;
+      width: 2rem;
+      height: 2px;
+      border-radius: 1rem;
+      position: absolute;
+      right: 0;
+
+      &::before,
+      &::after {
+        content: "";
+      }
+    }
+  }
+
+  //creating the cross on click
+  &__input:checked ~ &__right &__response {
+    background: transparent;
+  }
+  &__input:checked ~ &__right &__response::before {
+    transform: rotate(135deg);
+  }
+
+  &__input:checked ~ &__right &__response::after {
+    transform: rotate(-135deg);
+  }
+
+  &__input:checked ~ &__right &__response::after,
+  &__input:checked ~ &__right &__response::before {
+    top: 0;
+  }
+
+  // creating the NavbarResponsive on tab-land
+  &__input:checked ~ &__responsive {
+    display: block;
+    opacity: 1;
+  }
+}
